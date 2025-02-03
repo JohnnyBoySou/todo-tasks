@@ -1,4 +1,4 @@
-import React, { useState, useImperativeHandle, forwardRef } from "react";
+import React, { useState, useImperativeHandle, forwardRef, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Pencil, Trash } from "lucide-react";
 import { Drawer, DrawerClose, DrawerContent, DrawerTrigger, } from "../../ui/drawer"
@@ -8,7 +8,11 @@ import DeleteTask from "./delete";
 
 //API
 import { Task } from "../../api/types";
-import { filterTasks } from '../../api/tasks/index';
+import { filterTasks } from '../../api/tasks';
+
+//REALTIME
+import io from "socket.io-client";
+const socket = io("http://localhost:5000");
 
 const ListTasks = forwardRef((props, ref) => {
     const [tab, settab] = useState('ALL');
@@ -22,6 +26,23 @@ const ListTasks = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => ({
         refetchTasks: refetch,
     }));
+
+    useEffect(() => {
+        socket.on("taskUpdated", () => {
+            refetch();
+        });
+        socket.on("taskDeleted", () => {
+            refetch();
+        });
+        socket.on("taskCreated", () => {
+            refetch();
+        });
+        return () => {
+            socket.off("taskUpdated");
+            socket.off("taskDeleted");
+            socket.off("taskCreated");
+        };
+    }, [refetch]);
 
     return (
         <Container>

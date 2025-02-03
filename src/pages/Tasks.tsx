@@ -13,7 +13,7 @@ import { Title, Label, Button, Column, Row, Main, Container } from "../ui";
 
 import AddTask from '../components/tasks/add';
 import ListTasks from "../components/tasks/list";
-import { logout } from "../config/firebaseConfig";
+import { logout } from "../services/firebase.ts";
 import { useNavigate } from "react-router-dom";
 
 export default function Tasks() {

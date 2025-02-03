@@ -1,8 +1,9 @@
-import { CreateTask } from "../types";
+/// <reference types="vite/client" />
+import { CreateTask } from "./types";
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:5000/api", 
+    baseURL: import.meta.env.VITE_SERVER_URL+"/api", 
 });
 
 //CREATE
@@ -16,7 +17,8 @@ export const fetchTasks = async () => {
     return response.data;
 };
 //UPDATE
-export const updateTask = async ( id: string, task: Partial<CreateTask> ) => {
+export const updateTask = async (id: string, task: Partial<CreateTask>) => {
+    console.log(task)
     const response = await api.put(`/tasks/${id}`, task);
     return response.data;
 };

@@ -19,17 +19,22 @@ export default function EditTask({ refresh, defaultValues }) {
 
     const onSubmit = async (data: CreateTask) => {
         try {
-            await updateTask(defaultValues.id, {
+            const res = await updateTask(defaultValues.id, {
                 title: data.title,
                 description: data.description,
                 status: data.status,
             });
             refresh();
-            reset();
+            reset({
+                title: res.title,
+                description: res.description,
+                status: res.status,
+            });
         } catch (error) {
             console.error(error);
         }
     };
+
 
     return (
         <Container className="mb-4 gap-4 flex-col flex container px-4 ">
@@ -83,7 +88,6 @@ export default function EditTask({ refresh, defaultValues }) {
                     Salvar modificações
                 </Button>
             </form>
-
         </Container>
     )
 }
