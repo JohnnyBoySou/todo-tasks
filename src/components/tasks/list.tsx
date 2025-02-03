@@ -5,7 +5,6 @@ import { Drawer, DrawerClose, DrawerContent, DrawerTrigger, } from "../../ui/dra
 import { Title, Label, Description, Button, Column, Row, Container } from "../../ui";
 import EditTask from "./edit";
 import DeleteTask from "./delete";
-
 //API
 import { Task } from "../../api/types";
 import { filterTasks } from '../../api/tasks';
@@ -131,5 +130,4 @@ const EmptyTasks = () => {
         </Column>
     )
 }
-
 export default ListTasks
