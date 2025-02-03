@@ -1,50 +1,81 @@
-# React + TypeScript + Vite
+Como Executar o Projeto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Clonar o Repositório
 
-Currently, two official plugins are available:
+git clone https://github.com/JohnnyBoySou/todo-tasks.git
+cd todo-tasks
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. Instalar as Dependências
 
-## Expanding the ESLint configuration
+npm install
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+3. Configurar o Firebase
 
-- Configure the top-level `parserOptions` property like this:
+Crie um projeto no Firebase Console:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Ative o Firestore Database.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Ative a autenticação com Google.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Copie as credenciais do Firebase e cole no arquivo .env:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
+VITE_FIREBASE_MEASUREMENT_ID=
+
+4. Rodar o Projeto
+
+npm run dev
+
+5. Executar os Testes
+
+npm run test
+
+Estrutura do Projeto
+
+├── src
+│   ├── components
+|   |   └── tasks
+│   │       ├── add.tsx
+│   │       ├── delete.tsx
+│   │       ├── edit.tsx
+│   │       ├── list.tsx
+│   │       └── __tests__
+|   |           ├── add.test.tsx
+│   │           ├── delete.test.tsx
+│   │           ├── edit.test.tsx
+│   │           └── list.test.tsx
+│   ├── pages
+│   │   ├── Login.tsx
+│   │   ├── NotFound.tsx
+│   │   └── Tasks.tsx
+│   ├── api
+│   │   ├── tasks.ts
+│   │   └── types.ts
+│   ├── services
+│   │   └── firebase.ts
+│   ├── hooks
+│   │   └── useAuth.tsx
+│   ├── context
+│   │   └── AuthContext.tsx
+│   ├── tasks
+│   │   ├── add.tsx
+│   │   ├── delete.tsx
+│   │   ├── list.tsx
+│   │   └── edit.tsx
+│   └── App.tsx
+│   └── index.css
+│   └── main.tsx
+├── vite.config.ts
+└── package.json
+
+Considerações
+
+O projeto foi desenvolvido com componentes de estilo utilizando tailwindcss por baixo dos panos, para facilitar leitura foi-se criado um sistema Componentes editaveis os quais você pode ver na pasta /ui
+
+Foram implementados testes unitários com Vitest para a pasta /componentes onde você pode acessar atraves de __tests__.
+
