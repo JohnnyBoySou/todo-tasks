@@ -1,0 +1,16 @@
+{
+  "include": [
+    "src",
+    "./jest.setup.ts"
+  ],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+  }
+}

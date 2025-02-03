@@ -1,0 +1,13 @@
+{
+    "files.exclude": {
+        "**/.gitattributes": true,
+        "**/.gitignore": true,
+        "**/App.css": false,
+        "**/App.tsx": false,
+        "**/index.css": false,
+        "**/main.tsx": false,
+        "**/config": false,
+        "**/assets": true,
+        "**/hooks": false,
+    }
+}
