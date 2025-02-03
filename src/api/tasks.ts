@@ -31,7 +31,7 @@ export const deleteTask = async ( id: string) => {
 // Filtrar tarefas por status
 export const filterTasks = async ( status: string ) => {
     const response = await api.get("/tasks/filter", { params: { status: status } });
-    return response.data;
+    return response.data || [];
 };
 // Buscar tarefa por título
 export const searchTasks = async ( title: string ) => {

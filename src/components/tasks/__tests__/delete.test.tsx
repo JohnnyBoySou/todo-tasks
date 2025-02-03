@@ -58,10 +58,10 @@ describe("DeleteTask Component", () => {
     render(<DeleteTask id="1" refresh={mockRefresh} />);
     const input = screen.getByTestId("confirmation");
     const button = screen.getByTestId("finish-button");
-
+  
     fireEvent.change(input, { target: { value: "excluir" } });
     fireEvent.click(button);
-
-    expect(button).toBeDisabled();
+  
+    await waitFor(() => expect(button).toBeDisabled());
   });
 });

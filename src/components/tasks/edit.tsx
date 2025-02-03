@@ -20,15 +20,15 @@ export default function EditTask({ refresh, defaultValues }) {
     const onSubmit = async (data: CreateTask) => {
         try {
             const res = await updateTask(defaultValues.id, {
-                title: data.title,
-                description: data.description,
-                status: data.status,
+                title: data?.title,
+                description: data?.description,
+                status: data?.status,
             });
             refresh();
             reset({
-                title: res.title,
-                description: res.description,
-                status: res.status,
+                title: res?.title,
+                description: res?.description,
+                status: res?.status,
             });
         } catch (error) {
             console.error(error);
