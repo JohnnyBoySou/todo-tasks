@@ -1,50 +1,106 @@
-# React + TypeScript + Vite
+## Funcionalidades
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Cadastro de tarefas.
+2. Exibição de todas as tarefas com seus respectivos dados.
+3. Tarefas com três status: **TODO**, **DOING**, **DONE**.
+4. Atualização de tarefas.
 
-Currently, two official plugins are available:
+## Diferenciais (Implementados)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [x] Login com Google (Firebase Authentication)
+- [x] Atualização de dados em tempo real (Firestore Realtime Updates)
 
-## Expanding the ESLint configuration
+## Como Executar o Projeto
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### 1. Clonar o Repositório
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone https://github.com/JohnnyBoySou/todo-tasks.git
+cd todo-tasks
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 2. Instalar as Dependências
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm install
 ```
+
+### 3. Configurar o Firebase
+
+Crie um projeto no [Firebase Console](https://console.firebase.google.com/):
+
+- Ative o **Firestore Database**.
+- Ative a **autenticação com Google**.
+- Copie as credenciais do Firebase e cole no arquivo `.env`:
+
+```env
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
+VITE_FIREBASE_MEASUREMENT_ID=
+```
+
+### 4. Rodar o Projeto
+
+```bash
+npm run dev
+```
+
+### 5. Executar os Testes
+
+```bash
+npm run test
+```
+
+## Estrutura do Projeto
+
+```
+├── src
+│   ├── components
+│   │   └── tasks
+│   │       ├── add.tsx
+│   │       ├── delete.tsx
+│   │       ├── edit.tsx
+│   │       ├── list.tsx
+│   │       └── __tests__
+│   │           ├── add.test.tsx
+│   │           ├── delete.test.tsx
+│   │           ├── edit.test.tsx
+│   │           └── list.test.tsx
+│   ├── pages
+│   │   ├── Login.tsx
+│   │   ├── NotFound.tsx
+│   │   └── Tasks.tsx
+│   ├── api
+│   │   ├── tasks.ts
+│   │   └── types.ts
+│   ├── services
+│   │   └── firebase.ts
+│   ├── hooks
+│   │   └── useAuth.tsx
+│   ├── context
+│   │   └── AuthContext.tsx
+│   ├── tasks
+│   │   ├── add.tsx
+│   │   ├── delete.tsx
+│   │   ├── list.tsx
+│   │   └── edit.tsx
+│   └── App.tsx
+│   └── index.css
+│   └── main.tsx
+├── vite.config.ts
+└── package.json
+```
+
+## Considerações
+
+- O projeto foi desenvolvido com componentes de estilo utilizando **TailwindCSS** por baixo dos panos. Para facilitar a leitura, foi criado um sistema de componentes editáveis, que podem ser encontrados na pasta `/ui`.
+- Foram implementados **testes unitários** com **Vitest** para a pasta de componentes, acessíveis através da pasta `__tests__`.
+
+---
+
+Desenvolvido por [João Sousa](https://github.com/JohnnyBoySou).
+
