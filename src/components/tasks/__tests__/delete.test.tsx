@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import DeleteTask from "../delete";
-import { deleteTask } from "../../../api/tasks/index";
+import { deleteTask } from "../../../api/tasks";
 import { describe, expect, vi } from "vitest";
 
 import "@testing-library/jest-dom/vitest";
