@@ -3,7 +3,7 @@ import { CreateTask } from "./types";
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: process.env.VITE_SERVER_URL+"/api", 
+    baseURL: import.meta.env.VITE_SERVER_URL+"/api", 
 });
 
 //CREATE

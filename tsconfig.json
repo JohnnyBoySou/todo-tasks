@@ -5,6 +5,8 @@
   ],
   "compilerOptions": {
     "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "incremental": true,
     "esModuleInterop": true,
     "outDir": "./dist",

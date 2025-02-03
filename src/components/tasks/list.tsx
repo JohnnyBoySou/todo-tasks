@@ -1,4 +1,4 @@
-import React, { useState, useImperativeHandle, forwardRef, useEffect } from "react";
+import  { useState, useImperativeHandle, forwardRef, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Pencil, Trash } from "lucide-react";
 import { Drawer, DrawerClose, DrawerContent, DrawerTrigger, } from "../../ui/drawer"
@@ -12,7 +12,7 @@ import { filterTasks } from '../../api/tasks';
 
 //REALTIME
 import io from "socket.io-client";
-const socket = io("http://localhost:5000");
+const socket = io(import.meta.env.VITE_SERVER_URL);
 
 const ListTasks = forwardRef((props, ref) => {
     const [tab, settab] = useState('ALL');
