@@ -9,6 +9,9 @@
 
 - [x] Login com Google (Firebase Authentication)
 - [x] Atualização de dados em tempo real (Firestore Realtime Updates)
+- [x] Hospedar Back-end com Render [Acessar](https://backend-todo-tasks.onrender.com/api/tasks/filter?status=ALL)
+- [x] Hospedar Front-end com Vercel [Acessar](https://todo-tasks-seven.vercel.app/)
+
 
 ## Como Executar o Projeto
 
