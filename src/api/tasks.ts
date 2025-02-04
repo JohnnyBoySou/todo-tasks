@@ -18,7 +18,6 @@ export const fetchTasks = async () => {
 };
 //UPDATE
 export const updateTask = async (id: string, task: Partial<CreateTask>) => {
-    console.log(task)
     const response = await api.put(`/tasks/${id}`, task);
     return response.data;
 };

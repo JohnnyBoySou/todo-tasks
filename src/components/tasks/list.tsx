@@ -19,7 +19,6 @@ const ListTasks = forwardRef((props, ref) => {
     const { data: tasks, error, isLoading, refetch } = useQuery({
         queryKey: [`tasks list ${tab}`],
         queryFn: async () => { const res = await filterTasks(tab); return res },
-        retry: false,
     });
 
     useImperativeHandle(ref, () => ({
@@ -43,14 +42,18 @@ const ListTasks = forwardRef((props, ref) => {
         };
     }, [refetch]);
 
+    console.log(tasks)
+
     return (
         <Container>
             <Column>
                 <Selections settab={settab} tab={tab} />
-                {isLoading && <div data-testid="loading">Carregando tarefas...</div>}
-                {error && <div data-testid="error">Erro ao carregar tarefas</div>}
+                {isLoading && <div data-testid="loading" className="text-black text-center my-5 text-2xl">Carregando tarefas...</div>}
+                {error && <div data-testid="error" className="text-red-500 text-center my-5 text-2xl">Erro ao carregar tarefas {error?.message}</div>}
                 {tasks?.length === 0 && <EmptyTasks />}
-                {tasks?.map((task: Task) => <ItemTask key={task.id} task={task} refetch={refetch} />)}
+                {tasks?.length > 0 && <>
+                    {tasks?.map((task: Task) => <ItemTask key={task.id} task={task} refetch={refetch} />)}
+                </>}
             </Column>
         </Container>
     )
@@ -74,7 +77,7 @@ const ItemTask = ({ task, refetch }) => {
     const { id, title, description, status, createdAt } = task;
     const sts = status === 'TODO' ? 'A fazer' : status === 'DOING' ? 'Fazendo' : 'Feito';
     return (
-        <Column className="p-4 my-2 rounded-xl bg-gray-100 transition" >
+        <Column className="p-4 my-2 rounded-xl bg-gray-100 transition fadein" >
             <Row className="justify-between">
                 <Column>
                     <Title  className={`text-lg font-semibold }`}>{title}</Title>
@@ -120,7 +123,7 @@ const ItemTask = ({ task, refetch }) => {
 
 const EmptyTasks = () => {
     return (
-        <Column className="p-4 rounded-xl bg-gray-100" >
+        <Column className="p-4 my-2 rounded-xl bg-gray-100" >
             <Row className="justify-between">
                 <Column>
                     <Title className={`text-lg font-semibold }`}>Sem tarefas</Title>

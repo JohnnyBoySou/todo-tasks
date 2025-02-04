@@ -17,6 +17,7 @@ const provider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, provider);
+    console.log(result)
     return result.user;
   } catch (error) {
     console.error("Erro no login:", error);
